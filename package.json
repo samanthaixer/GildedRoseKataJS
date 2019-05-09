@@ -7,7 +7,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/emilybache/GildedRose-Refactoring-Kata.git"
+    "url": "git+https://github.com/samanthaixer/GildedRoseKataJS.git"
   },
   "keywords": [
     "kata",
@@ -17,9 +17,9 @@
   "license": "MIT",
   "private": true,
   "bugs": {
-    "url": "https://github.com/emilybache/GildedRose-Refactoring-Kata/issues"
+    "url": "https://github.com/samanthaixer/GildedRoseKataJS.git/issues"
   },
-  "homepage": "https://github.com/emilybache/GildedRose-Refactoring-Kata",
+  "homepage": "https://github.com/samanthaixer/GildedRoseKataJS.git",
   "devDependencies": {
     "babel-core": "^6.26.0",
     "babel-preset-env": "1.7.0",
