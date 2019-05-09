@@ -27,32 +27,13 @@ class Shop {
               this.increaseQuality(i, 1);
           }
           break;
+        case 'Conjured':
+          this.decreaseQuality(i, 2);
+          break;
         default:
-          if(name != 'Conjured'){
-            this.decreaseQuality(i, 1);
-          } else {
-            this.decreaseQuality(i, 2);
-          }
+          this.decreaseQuality(i, 1);
           break;
       }
-
-      // if (name != 'Aged Brie' && name != 'Backstage passes to a TAFKAL80ETC concert') {
-      //   if(name != 'Conjured'){
-      //     this.decreaseQuality(i, 1);
-      //   } else {
-      //     this.decreaseQuality(i, 2);
-      //   }
-      // } else {
-      //   this.increaseQuality(i, 1);
-      //   if (name == 'Backstage passes to a TAFKAL80ETC concert') {
-      //     if (this.items[i].sellIn < 11) {
-      //         this.increaseQuality(i, 1);
-      //     }
-      //     if (this.items[i].sellIn < 6) {
-      //         this.increaseQuality(i, 1);
-      //     }
-      //   }
-      // }
 
       if (name != 'Sulfuras, Hand of Ragnaros') {
         this.decreaseSellInDays(i);
