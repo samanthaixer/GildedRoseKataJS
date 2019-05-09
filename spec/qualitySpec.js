@@ -29,7 +29,7 @@ describe("Gilded Rose", function(){
       expect(items[0].quality).toEqual(6);
     })
 
-    it("the quality is never negative", function(){
+    it("The Quality of an item is never negative", function(){
       for(var i=0; i<11; i++){
         var items = this.gildedRose.updateQuality();
       }
@@ -76,6 +76,48 @@ describe("Gilded Rose", function(){
     it("Doesn't change the sellIn for sulfuras", function(){
       var items = this.gildedRose.updateQuality();
       expect(items[0].sellIn).toEqual(10);
+    })
+  });
+
+  describe("Backstage passes", function(){
+    beforeEach(function(){
+      this.gildedRose = new Shop([ new Item("Backstage passes to a TAFKAL80ETC concert", 15, 10)])
+    })
+
+    it("Increases by 1 when there are more than 10 days to sell in", function(){
+      var items = this.gildedRose.updateQuality();
+      expect(items[0].quality).toEqual(11);
+    })
+
+    it("Increases by 2 when there are 10 days or less to sell in", function(){
+      for(var i=0; i<6; i++){
+        var items = this.gildedRose.updateQuality();
+      }
+      expect(items[0].quality).toEqual(17);
+    })
+
+    it("Increases by 3 where there are 5 days or less", function(){
+      for(var i=0; i<11; i++){
+        var items = this.gildedRose.updateQuality();
+      }
+      expect(items[0].sellIn).toEqual(4);
+      expect(items[0].quality).toEqual(28);
+    })
+
+    it("Sets the quality to zero after sellIn reaches 0", function(){
+      for(var i=0; i<16; i++){
+        var items = this.gildedRose.updateQuality();
+      }
+      expect(items[0].sellIn).toEqual(-1);
+      expect(items[0].quality).toEqual(0);
+    })
+
+    it("The Quality of an item is never negative", function(){
+      for(var i=0; i<17; i++){
+        var items = this.gildedRose.updateQuality();
+      }
+      expect(items[0].sellIn).toEqual(-2);
+      expect(items[0].quality).toEqual(0);
     })
   });
 });
