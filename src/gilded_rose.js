@@ -14,30 +14,45 @@ class Shop {
     for (var i = 0; i < this.items.length; i++) {
       var name = this.items[i].name;
 
-      if (name != 'Aged Brie' && name != 'Backstage passes to a TAFKAL80ETC concert') {
-        if(name != 'Conjured'){
-          this.decreaseQuality(i, 1);
-        } else {
-          this.decreaseQuality(i, 2);
-        }
-
-      } else {
-        if (this.items[i].quality < 50) {
+      switch(name) {
+        case 'Aged Brie':
           this.increaseQuality(i, 1);
-          if (name == 'Backstage passes to a TAFKAL80ETC concert') {
-            if (this.items[i].sellIn < 11) {
-              if (this.items[i].quality < 50) {
-                this.increaseQuality(i, 1);
-              }
-            }
-            if (this.items[i].sellIn < 6) {
-              if (this.items[i].quality < 50) {
-                this.increaseQuality(i, 1);
-              }
-            }
+          break;
+        case 'Backstage passes to a TAFKAL80ETC concert':
+          this.increaseQuality(i, 1);
+          if (this.items[i].sellIn < 11) {
+              this.increaseQuality(i, 1);
           }
-        }
+          if (this.items[i].sellIn < 6) {
+              this.increaseQuality(i, 1);
+          }
+          break;
+        default:
+          if(name != 'Conjured'){
+            this.decreaseQuality(i, 1);
+          } else {
+            this.decreaseQuality(i, 2);
+          }
+          break;
       }
+
+      // if (name != 'Aged Brie' && name != 'Backstage passes to a TAFKAL80ETC concert') {
+      //   if(name != 'Conjured'){
+      //     this.decreaseQuality(i, 1);
+      //   } else {
+      //     this.decreaseQuality(i, 2);
+      //   }
+      // } else {
+      //   this.increaseQuality(i, 1);
+      //   if (name == 'Backstage passes to a TAFKAL80ETC concert') {
+      //     if (this.items[i].sellIn < 11) {
+      //         this.increaseQuality(i, 1);
+      //     }
+      //     if (this.items[i].sellIn < 6) {
+      //         this.increaseQuality(i, 1);
+      //     }
+      //   }
+      // }
 
       if (name != 'Sulfuras, Hand of Ragnaros') {
         this.decreaseSellInDays(i);
@@ -48,12 +63,10 @@ class Shop {
           if (name != 'Backstage passes to a TAFKAL80ETC concert') {
               this.decreaseQuality(i, 1);
           } else {
-            this.items[i].quality = this.items[i].quality - this.items[i].quality;
+            this.items[i].quality = 0;
           }
         } else {
-          if (this.items[i].quality < 50) {
-            this.increaseQuality(i, 1);
-          }
+          this.increaseQuality(i, 1);
         }
       }
     }
@@ -68,17 +81,11 @@ class Shop {
   }
 
   increaseQuality(i, amount) {
-    this.items[i].quality = this.items[i].quality + amount;
+    if(this.items[i].quality < 50) this.items[i].quality = this.items[i].quality + amount;
   }
 
   decreaseSellInDays(i) {
     this.items[i].sellIn = this.items[i].sellIn - 1;
-  }
-
-  isMaxQuality(i) {
-    const MAX_QUALITY = 50;
-    if(this.items[i].quality < this.MAX_QUALITY) return false;
-    return true;
   }
 }
 module.exports = {
