@@ -120,4 +120,29 @@ describe("Gilded Rose", function(){
       expect(items[0].quality).toEqual(0);
     })
   });
+
+  describe("Conjure items", function(){
+    beforeEach(function(){
+      this.gildedRose = new Shop([ new Item("Conjured", 5, 10)])
+    })
+
+    it("degrades in Quality twice as fast as normal items", function(){
+      var items = this.gildedRose.updateQuality();
+      expect(items[0].quality).toEqual(8);
+    })
+
+    it("continues to degrade in Quality twice as fast as normal items", function(){
+      var items = this.gildedRose.updateQuality();
+      items = this.gildedRose.updateQuality();
+      expect(items[0].quality).toEqual(6);
+    })
+
+    it("The Quality of an item is never negative", function(){
+      for(var i=0; i<7; i++){
+        var items = this.gildedRose.updateQuality();
+      }
+      expect(items[0].sellIn).toEqual(-2);
+      expect(items[0].quality).toEqual(0);
+    })
+  })
 });
