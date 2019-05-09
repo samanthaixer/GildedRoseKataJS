@@ -35,5 +35,47 @@ describe("Gilded Rose", function(){
       }
       expect(items[0].quality).toEqual(0);
     })
-  })
-})
+  });
+
+  describe("Aged brie quality increases", function(){
+    beforeEach(function(){
+      // Aged Brie item that increases in quality
+      this.gildedRose = new Shop([ new Item("Aged Brie", 20, 30)]);
+    })
+
+    it("Increases in Quality the older it gets", function(){
+      var items = this.gildedRose.updateQuality();
+      expect(items[0].quality).toEqual(31);
+    });
+
+    it("Increases in Quality over a number of days", function(){
+      for(var i=0; i<10; i++){
+        var items = this.gildedRose.updateQuality();
+      }
+      expect(items[0].quality).toEqual(40);
+    })
+
+    it("ensures that the Quality of an item is never more than 50", function(){
+      for(var i=0; i<30; i++){
+        var items = this.gildedRose.updateQuality();
+      }
+      expect(items[0].quality).toEqual(50);
+    })
+  });
+
+  describe("Sulfuras quality and sellIn do not change", function(){
+    beforeEach(function(){
+      this.gildedRose = new Shop([ new Item("Sulfuras, Hand of Ragnaros", 10, 20)])
+    })
+
+    it("Doesn't change the quality for sulfuras", function(){
+      var items = this.gildedRose.updateQuality();
+      expect(items[0].quality).toEqual(20);
+    })
+
+    it("Doesn't change the sellIn for sulfuras", function(){
+      var items = this.gildedRose.updateQuality();
+      expect(items[0].sellIn).toEqual(10);
+    })
+  });
+});
