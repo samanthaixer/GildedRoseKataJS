@@ -18,8 +18,14 @@ At first glance, it looks like the code has been written in ES6 which is new to 
 
 1. The first thing I did was to run the tests.
   - There is an example test in the folder so I looked at what it does.
-2. Write more tests to make sure that any changes I make still run
+2. Wrote more tests to make sure that any changes I make still run
   - Use the spec to decide on what tests to write
+3. Refactored the code so that it becomes clear where I would introduce the new requirement
+4. Introduced the new requirement (writing tests first)
+5. Continued refactoring to make the code easy to read
+  - During this stage I discovered that Brie is supposed to add 2 points of quality for every day over the sell by date. This isn't in the requirements but is in the existing code so I wrote a test for it. 
+6. Ran a linter (eslint)
+7. Introduced nyc for code coverage
 
 ## Gilded Rose brief
 
