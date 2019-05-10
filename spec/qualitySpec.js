@@ -40,18 +40,26 @@ describe("Gilded Rose", function(){
   describe("Aged brie quality increases", function(){
     beforeEach(function(){
       // Aged Brie item that increases in quality
-      this.gildedRose = new Shop([ new Item("Aged Brie", 20, 30)]);
+      this.gildedRose = new Shop([ new Item("Aged Brie", 10, 20)]);
     })
 
     it("Increases in Quality the older it gets", function(){
       var items = this.gildedRose.updateQuality();
-      expect(items[0].quality).toEqual(31);
+      expect(items[0].quality).toEqual(21);
     });
 
     it("Increases in Quality over a number of days", function(){
       for(var i=0; i<10; i++){
         var items = this.gildedRose.updateQuality();
       }
+      expect(items[0].quality).toEqual(30);
+    })
+
+    it("Once the sell by date passes, start to increase quality by 2", function(){
+      for(var i=0; i<15; i++){
+        var items = this.gildedRose.updateQuality();
+      }
+      expect(items[0].sellIn).toEqual(-5);
       expect(items[0].quality).toEqual(40);
     })
 
