@@ -57,13 +57,13 @@ class Shop {
 
   decreaseQuality(i, amount) {
     if(this.items[i].quality > 0){
-      this.items[i].quality = this.items[i].quality - amount;
+      this.items[i].quality -= amount;
     }
   }
 
   increaseQuality(i, amount) {
     // look at how to take out magic numbers - understand JavaScript scope with constants
-    if(this.items[i].quality < 50) this.items[i].quality = this.items[i].quality + amount;
+    if(this.items[i].quality < 50) this.items[i].quality += amount;
   }
 
   decreaseSellInDays(i) {
